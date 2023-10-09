@@ -1,0 +1,125 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}News & Updates{% endblock title %}
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+
+		<div class="container zoomIn animated">
+			
+			<h1 class="page-title">NEWS & UPDATES <span class="title-under"></span></h1>
+			<p class="page-description">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit Necessitatibus.
+			</p>
+			
+		</div>
+
+	</div>
+
+	<div class="main-container">
+
+		<div class="our-causes fadeIn animated">
+
+	        <div class="container">
+
+	            <h2 class="title-style-1">News & Updates <span class="title-under"></span></h2>
+
+	            <div class="row">
+                    {% for post in posts %}
+                    <div class="col-md-4 col-sm-12">
+                        <div class="cause">
+                            {% if post.header_image %}
+                            <a href="{{post.get_absolute_url}}">
+                            <img src="{{post.header_image.url}}" class="cause-img" style="max-height:220px;"  alt="{{post.title}}">
+                            </a>
+                            {% endif %}
+
+                            <h4 class="cause-title"><a href="{{post.get_absolute_url}}">{{post.title}} </a></h4>
+                            <div class="cause-details">
+                                {% if post.intro %}
+                                    {{ post.intro|safe|truncatewords_html:15 }}
+                                {% else %}
+                                    {{ post.body|safe|truncatewords_html:15 }}
+                                {% endif %}
+                            </div>
+                            <div class="btn-holder text-center">
+                                <a href="{{post.get_absolute_url}}" class="btn btn-primary"> Read More <i class="fa fa-arrow-right"></i></a>  
+                            </div>
+                        </div> <!-- /.cause -->
+                    </div> 
+                    {% endfor %}
+                    <hr />
+                    <div class="col-12">
+                        <!--Pagination-->
+                        <nav class="d-flex">
+                        <ul class="pagination pg-blue">
+                        {% if posts.has_other_pages %}
+                        <ul class="pagination pg-blue">
+                            {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link disabled" href="" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% for i in posts.paginator.page_range %}
+                            {% if posts.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ i }}
+                                <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if posts.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link disabled" href="" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            </ul>
+                        {% endif %}
+                        </nav>
+                        <!--Pagination-->
+                    </div>
+	            </div>
+	         </div>
+	    </div> <!-- /.our-causes -->
+
+        
+
+	</div> <!-- /.main-container  -->
+
+{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+
+{% endblock extra_scripts %}

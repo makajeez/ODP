@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js">
+    <head> 
+        <meta charset="utf-8">
+        <title>{% block head_title %} {% endblock %}{% block title %} {% endblock title %} - DONATION PLATFORM</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="tag" content="{{ site_tags }}"/>
+        <meta name="keywords" content="{{ site_keywords }}">
+        <meta name="author" content="DaboLinux Technologies">
+        <link rel="canonical" href="https://dabolinux.com"/>
+        <meta name="geo.placename" content="{{ site_geo_placename }}">
+        <meta name="geo.position" content="{{ site_geo_position }}">
+        <meta name="geo.region" content="{{ site_geo_region }}">
+        <meta name="geo.country" content="{{ site_geo_country }}">
+        <meta name="ICBM" content="{{ site_geo_position }}">
+        <meta name="google-site-verification" content="{{ google_meta }}" />
+        <meta name="yandex-verification" content="{{ yandex_meta }}" />
+        <meta name="msvalidate.01" content="{{ bing_meta }}" />
+        <meta name="propeller" content="{{ propeller_meta }}">
+        <meta name="description" content="Developed By DaboLinux Technologies" />
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:400,700' rel='stylesheet' type='text/css'>
+        <!-- Bootsrap -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+        <!-- Owl carousel -->
+        <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+        <!-- Template main Css -->
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <!-- Modernizr -->
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+        <!-- favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}%" color="#5bbad5">
+        <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="{% static 'favicons/browserconfig.xml' %}">
+        <meta name="theme-color" content="#ffffff">
+        {% block extra_head %} 
+        {% endblock extra_head %}
+    </head>
+<body>
+    {% include "core/navbar.html" %}
+    <div class="card mx-auto mt-5 container-fluid bg-secondary">
+        {% if messages %}
+        <div class="clearfix"></div>
+        <br />
+            {% for message in messages %}
+            <div class="clearfix alert {{ message.tags }} text-center alert-dismissible fade show badge badge-block text-center" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr class="my-1" />
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block extra_body %}
+    {% endblock extra_body %}
+
+    {% include "core/sponsors.html" %}
+    <div class="clearfix"> </div>
+    {% include "core/footer.html" %}
+
+
+    {% include "core/donate_modal.html" %}
+    <!--  Scripts
+    ================================================== -->
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"><\/script>')</script>
+    <!-- Bootsrap javascript file -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- owl carouseljavascript file -->
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <!-- Template main javascript -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','{{google_analytics_id}}');ga('send','pageview');
+    </script>
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+    <footer class="main-footer">
+        <div class="footer-top">
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-col">
+                            <h4 class="footer-title">About us <span class="title-under"></span></h4>
+                            <div class="footer-content">
+                              <p>
+                                {{tagline}}
+                              </p>
+                              <a href="{% url 'core:page' 'about' %}" class="btn-xsm btn-primary">About</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="footer-col">
+                            <h4 class="footer-title">Useful Links</span><span class="title-under"></span></h4>
+                            <div class="footer-content">
+                              <!-- <li><a href="{% url 'blog:blog-home' %}" class="py-2 d-block">BLOG</a></li>
+                              <li><a href="{% url 'core:page' 'team' %}" class="py-2 d-block">TEAM</a></li>
+                              <li><a href="{% url 'core:page' 'terms' %}" class="py-2 d-block">TERMS &amp; CONDITIONS</a></li> -->
+                              <!-- <li><a href="{% url 'core:page' 'privacy' %}" class="py-2 d-block">PRIVACY POLICY</a></li> -->
+                              <li><a href="{% url 'donation:donation-home' %}" class="py-2 d-block">HADIYA</a></li>
+                              <li><a href="{% url 'donation:donation-frame' %}" class="py-2 d-block">DONATION (N1,000)</a></li>
+                              <li><a href="{% url 'gallery:gallery' %}" class="py-2 d-block">GALLERY</a></li>
+                              <!-- <li><a href="https://dabolinux.com" class="py-2 d-block">WEB MAIL (Staff Only)</a></li> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="footer-col">
+                          <h4 class="footer-title">Contacts<span class="title-under"></span></h4>
+                          <div class="footer-content">
+                            <a href="{% url 'core:contact' %}"><span class="fa fa-headphones"> Contact Page</a> <br />
+                            {% for phone in phones %}
+                            <a href="call:{{phone.info}}"> <span class="fa fa-phone"></span> Phone {{forloop.counter}}: {{phone.info}}</a> <br />
+                            {% endfor %}
+                            <a href="mail:{{site_email}}"> <span class="fa fa-envelope text-warning"></span> {{site_email}} </a> <br />
+                            <span class="fa fa-map-marker text-danger"></span> {{address}}
+                          </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>    
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container text-center">
+              <script>document.write(new Date().getFullYear());</script> &copy;
+                <a href="{% url 'core:home' %}"> DONATION PLATFORM </a>  &nbsp <br />
+            </div>
+        </div>
+
+    </footer> <!-- main-footer -->

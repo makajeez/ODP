@@ -1,0 +1,51 @@
+<!-- Donate Modal -->
+    <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="donateModalLabel">DONATE NOW</h4>
+          </div>
+          <div class="modal-body">
+                <form class="form-donation" method="POST" action="{% url 'donation:donation-home' %}">
+                {% csrf_token %}
+                    <h3 class="title-style-1 text-center">Thank you for your donation <span class="title-under"></span>  </h3>
+                    <div class="row">
+                        <div class="form-group col-md-12 ">
+                            <input type="number" min=100 class="form-control" name="amount" placeholder="AMOUNT(₦)" required="required">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control" name="fullname" placeholder="Full Name*" required="required">
+                        </div>
+                        {% comment %} <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="lastName" placeholder="Last name*">
+                        </div> {% endcomment %}
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="email" class="form-control" name="email" placeholder="Email*" required="required">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="phone" class="form-control" name="phone" placeholder="Phone">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <textarea cols="30" rows="1" class="form-control" name="note" placeholder="Registration number(Student) / Anonymous"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary pull-right" name="donateNow" >DONATE NOW</button>
+                        </div>
+                    </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /.Donate modal -->

@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Make a Donation{% endblock title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/vendors/sweetalert/sweetalert.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+
+		<div class="container zoomIn animated">
+			
+			<h1 class="page-title">Donated Now <span class="title-under"></span></h1>
+			<p class="page-description">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit Necessitatibus.
+			</p>
+			
+		</div>
+
+	</div>
+
+	<div class="main-container fadeIn animated">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-form">
+          <h3 class="title-style-1 text-center">Thank you for your Intend donation <span class="title-under"></span>  </h3>
+          <form class="form-donation" method="POST" action="{% url 'donation:donation-home' %}">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-12 ">
+                        <input type="number" min=100 class="form-control" name="amount" placeholder="AMOUNT(₦)" required="required">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" name="fullname" placeholder="Full Name*" value="{{fullname}}" required="required">
+                    </div>
+                    {% comment %} <div class="form-group col-md-6">
+                        <input type="text" class="form-control" name="lastName" value="{{lastName}}" placeholder="Last name*">
+                    </div> {% endcomment %}
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" name="email" value="{{email}}" placeholder="Email***" required="required">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <input type="phone" class="form-control" name="phone" value="{{phone}}" placeholder="Phone">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <textarea cols="30" rows="1" class="form-control" value="{{note}}" name="note" placeholder="Registration number(Student) / Anonymous"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary pull-right" name="donateNow" >DONATE NOW</button>
+                    </div>
+                </div>
+          </form>
+
+				</div>
+			</div> <!-- /.row -->
+		</div>
+	</div>
+    
+	{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'core/js/django.csrf.js' %}"></script>
+<script src="{% static 'core/vendors/sweetalert/sweetalert.min.js' %}"></script>
+{% endblock extra_scripts %}

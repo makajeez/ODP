@@ -1,0 +1,54 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}{{ page.title }}{% endblock title %}
+{% block extra_head %}
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.sub_title }} - {{ page.title }}">
+<meta property="og:image" content="{% if page.img %} {{ page.img.url }} {% else %} {% static 'favicon/apple-touch-icon.png' %} {% endif %}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+		<div class="container zoomIn animated">		
+			<h1 class="page-title">{{ page.title }} <span class="title-under"></span></h1>
+			<p class="page-description">
+				{{ page.sub_title }}
+			</p>
+		</div>
+	</div>
+
+	<div class="main-container">
+		<div class="container">
+			<div class="row fadeIn animated">
+                {% if page.img %}
+				<div class="col-md-12">
+                {% else %}
+                <div class="col-md-12">
+                {% endif %}
+                    <h2 class="title-style-2">{{page.title}} <span class="title-under"></span></h2>
+                    <p class="text-justify">
+                        {{ page.body|safe }}
+                    </p>
+				</div>
+
+                {% if page.img %}
+                <!-- <div class="col-md-4">
+                  <img src="{{page.img.url}}" class="img-responsive" alt="{{page.title}}">
+				</div> -->
+                {% endif %}
+
+                
+
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</div>    
+	{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+
+{% endblock extra_scripts %}

@@ -1,0 +1,18 @@
+{% load static %}
+    <!--our-sponsors -->
+    <div class="section-home our-sponsors animate-onscroll fadeIn">
+    
+        <div class="container">
+
+            <h2 class="title-style-1">Our Sponsors <span class="title-under"></span></h2>
+
+            <ul class="owl-carousel list-unstyled list-sponsors">
+            {% for partner in partners %}
+              <li> <img src="{{ partner.logo.url }}" alt="{{ partner.title }}"></li>
+            {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div> <!-- /.our-sponsors -->

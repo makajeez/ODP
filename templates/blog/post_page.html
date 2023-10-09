@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}{{ post.title }} | News & Updates{% endblock title %}
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+		<div class="container zoomIn animated">
+			<h1 class="page-title">{{ post.title }}<span class="title-under"></span></h1>	
+		</div>
+	</div>
+
+	<div class="main-container">
+		<div class="container">
+			<div class="row fadeIn animated">
+				<div class="col-md-8">
+					<h2 class="title-style-2"> {{ post.title }} <span class="title-under"></span></h2>
+					<p>
+						{{ post.body|safe }}
+					</p>
+
+				</div>
+
+				<div class="col-md-4">
+					<p>
+						{% if post.header_image %}
+						<img src="{{post.header_image.url}}" class="img-fluid " style="max-height:auto; max-width:420px;"  alt="{{post.title}}">
+						{% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div> <!-- /.main-container  -->
+
+
+{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+
+{% endblock extra_scripts %}

@@ -1,0 +1,130 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load string_format %}
+{% block title %}Get in Touch{% endblock title %}
+{% block extra_head %}
+<style>
+	#map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+      }
+    </style>
+</style> 
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+
+		<div class="container zoomIn animated">
+			
+			<h1 class="page-title">CONTACT US <span class="title-under"></span></h1>
+			<p class="page-description">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit Necessitatibus.
+			</p>
+			
+		</div>
+
+	</div>
+
+	<div class="main-container fadeIn animated">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-7 col-sm-12 col-form">
+
+					<h2 class="title-style-2">CONTACT FORM <span class="title-under"></span></h2>
+
+					<form action="{% url 'audience:contact' %}" method="POST" class="contact-form">
+                    {% csrf_token %}
+                    <input name='next_url' type="hidden" value= "{{ request.get_full_path }}" >
+						<div class="row">
+
+							<div class="form-group col-md-6">
+	                            <input type="text" id="name" name="name" required="required" class="form-control" placeholder="Name*">
+	                        </div>
+
+	                         <div class="form-group col-md-6">
+	                            <input type="text" id="email" name="email" required="required" class="form-control" placeholder="E-mail*">
+	                        </div>
+							<div class="form-group col-md-6">
+	                            <input ype="text" id="subject" name="subject" required="required" class="form-control" placeholder="Subject*">
+	                        </div>
+						</div>
+
+                        <div class="form-group">
+                            <textarea type="text" id="message" name="message" rows="5" class="form-control" placeholder="Message*" required></textarea>
+                        </div>
+
+                        <div class="form-group alerts">
+                        	<div class="alert alert-success" role="alert">
+							</div>
+							<div class="alert alert-danger" role="alert">
+							</div>
+                        </div>	
+
+                         <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right">Send message</button>
+                        </div>
+                        <div class="clearfix"></div>
+					</form>
+
+				</div>
+
+				<div class="col-md-4 col-md-offset-1 col-contact">
+
+					<h2 class="title-style-2"> Donation CONTACTS <span class="title-under"></span></h2>
+					<p>
+						<b>DONATION PLATFORM</b> ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis viverra elementum semper quis ex. Donec lorem nulla .
+					</p>
+
+					<div class="contact-items">
+
+						<ul class="list-unstyled contact-items-list">
+							<li class="contact-item"> <span class="contact-icon"> <i class="fa fa-map-marker"></i></span> {{address}}</li>
+                            {% for phone in phones %}
+                                <li class="contact-item"> <span class="contact-icon"> <i class="fa fa-phone"></i></span> <a href="call:{{phone.info}}">{{phone.info}}</a></li>
+                            {% endfor %}
+							
+
+							<li class="contact-item"> <span class="contact-icon"> <i class="fa fa-envelope"></i></span> <a href="mail:{{site_email}}">{{site_email}}</a></li>
+						</ul>
+					</div>
+
+					
+					
+				</div>
+
+			</div> <!-- /.row -->
+
+
+		</div>
+		
+
+
+	</div>
+
+	<div class="col-12">
+	<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJx8wwSj-BrhERLhe1v5uunHc&key=AIzaSyBa_OC-o8LHaO3WWw0Gr_MBvH4IS0DcmkM" allowfullscreen></iframe>
+	{% comment %} <div id="contact-map" class="contact-map">
+		
+	</div> {% endcomment %}
+
+{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+ <!-- Google map  -->
+<script src="http://maps.google.com/maps/api/js?q={{address|ws_to_20|com_to_non}}" type="text/javascript"></script>
+{% comment %} <script src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script> {% endcomment %}
+{% endblock extra_scripts %}
+    

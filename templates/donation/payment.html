@@ -1,0 +1,146 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Online Donation Collection{% endblock title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/vendors/sweetalert/sweetalert.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+	<div class="page-heading text-center">
+		<div class="container zoomIn animated">
+			<h1 class="page-title">Donated Now <span class="title-under"></span></h1>
+			<p class="page-description">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit Necessitatibus.
+			</p>
+		</div>
+	</div>
+
+	<div class="main-container fadeIn animated">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-form">
+                    <h3 class="title-style-1 text-center">Thank you for your donation <span class="title-under"></span>  </h3>
+                    <h6 class="title-style-6 text-center">Summary of Your Donation <span class="title-under"></span>  </h6>
+                    {% comment %} <form class="form-donation" method="POST" action="{% url 'donation:donation-home' %}"> {% endcomment %}
+                    <form>
+                        {% csrf_token %}
+                        <input name='next_url' type="hidden" value= "{{ request.get_full_path }}" >
+                        <div class="row">
+                            <div class="form-group col-md-12 ">
+                                <input type="number" min=100 class="form-control" id="amount" name="amount" value={{amount}} placeholder="AMOUNT(₦)" required="required">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name*" value={{fullname}} required="required">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email*" value={{email}} required="required">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input type="phone" class="form-control" id="phone" name="phone" value="{{phone}}" placeholder="Phone">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <textarea cols="30" rows="1" class="form-control" id="note" name="note" value="{{note}}" placeholder="Registration Number(Student) / Anonymous"></textarea>
+                            </div>
+                        </div>
+
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
+                        <button type="button" onclick="payWithPaystack()" class="btn btn-primary pull-right" name="donateNow" ><i class="fa fa-credit-card"></i> PAY NOW</button>
+                    </form>
+ 
+                    <script>
+                        // {% comment %} var amount = document.getElementById("amount").value {% endcomment %}
+                        // {% comment %} console.log(amount); {% endcomment %}
+                        function payWithPaystack(){
+                        var handler = PaystackPop.setup({
+                            key: '{{payment_key}}',
+                            email: document.getElementById("email").value,
+                            amount: document.getElementById("amount").value*100, // in kobo
+                            currency: "NGN",
+                            //ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                            metadata: {
+                            custom_fields: [
+                                {
+                                display_name: "Username",
+                                variable_name: "Profile",
+                                value: "{{ request.user }}"
+                                },
+                                {
+                                display_name: "User Email",
+                                variable_name: "user_email",
+                                value: document.getElementById("email").value,
+                                }
+                            ]
+                            },
+                            callback: function(response){
+                                //alert('success. transaction ref is ' + response.reference);
+                                console.log(response);
+                                const data = {
+                                status : response.status,
+                                reference : response.reference,
+                                transaction : response.transaction,
+                                message : response.message,
+                                gateway :  "paystack",
+                                amount: document.getElementById("amount").value,
+                                email: document.getElementById("email").value,
+                                note: document.getElementById("note").value,
+                                next_url : "{{ request.get_full_path }}",
+                                };
+                                $.ajax( {
+                                url : "{% url 'donation:payment' %}",
+                                type : 'POST',
+                                data : data,
+                                // dataType = JSON,
+                                success : function(result){
+                                    //alert("Success","continue", "Good");
+                                    var msg = result['message'];
+                                    var next_url = result['next_url'];
+                                    //swal('Success', 'Transaction Reference: ' + result, 'success');
+                                    swal('Success', msg, 'success');
+                                    window.location.href = next_url;
+                                },
+                                error: function(error){
+                                    //alert("Error","continue", "Bad");
+                                    console.log(error);
+                                    swal('Error', 'An Error Occur !!!, Please Try Again', 'error');
+                                }
+                                }
+                                )   
+            
+                            },
+                            onClose: function(){
+                                //alert('window closed');
+                                swal('Abort Transaction', 'Are you Sure?', 'error');
+                            }
+                        });
+                        handler.openIframe();
+                        }
+                    </script>
+                    
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	{% endblock content %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+
+{% block extra_scripts %}
+<script>
+document.getElementById("note").value = "{{note}}";
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'core/js/django.csrf.js' %}"></script>
+<script src="{% static 'core/vendors/sweetalert/sweetalert.min.js' %}"></script>
+{% endblock extra_scripts %}

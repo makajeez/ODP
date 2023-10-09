@@ -1,0 +1,94 @@
+{% load static %}
+
+<header class="main-header">   
+    <!-- navbar navbar-default navbar-fixed-top # navbar navbar-static-top-->
+        <nav class="navbar navbar-static-top">
+            <div class="navbar-top">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <ul class="list-unstyled list-inline header-contact">
+                            <li> <i class="fa fa-phone"></i> <a href="tel:+2348000000000">+234 800 0000 000</a> </li>
+                             <li> <i class="fa fa-envelope"></i> <a href="mailto:{{site_email}}">{{site_email}}</a> </li>
+                       </ul> <!-- /.header-contact  -->
+                    </div>
+
+                    <!-- <div class="col-sm-6 col-xs-12 text-right">
+                        <ul class="list-unstyled list-inline header-social">
+                            <li> <a href="{{facebook}}"> <i class="fa fa-facebook"></i> </a> </li>
+                            <li> <a href="{{twitter}}"> <i class="fa fa-twitter"></i>  </a> </li>
+                            <li> <a href="{{youtube}}"> <i class="fa fa-youtube"></i>  </a> </li>
+                            <li> <a href="{{instagram}}"> <i class="fa fa-instagram"></i> </a> </li>
+                            <li> <a href="{{pinterest}}"> <i class="fa fa fa-pinterest-p"></i>  </a> </li>
+                       </ul> /.header-social  
+                    </div> -->
+
+                  </div>
+              </div>
+
+            </div>
+
+            <div class="navbar-main">
+              
+              <div class="container">
+
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  
+                  <a class="navbar-brand" href="{% url 'core:home' %}"><img src="{% static 'assets/images/sadaka-logo.png' %}" alt=""></a>
+                  
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse pull-right">
+
+                  <ul class="nav navbar-nav">
+                    <li><a class="is-active" href="{% url 'core:home' %}">HOME</a></li>
+                    <li><a href="{% url 'blog:blog-home' %}">BLOG</a></li>
+                    <li class="has-child"><a href="#">MSSN</a>
+                      <ul class="submenu">
+                         <li class="submenu-item"><a href="{% url 'core:page' 'about' %}">About</a></li>
+                         <!-- <li class="submenu-item"><a href="{% url 'core:page' 'team' %}">Team</a></li>
+                         <li class="submenu-item"><a href="{% url 'core:page' 'terms' %}">Terms &amp; Conditions</a></li> -->
+                         <!-- <li class="submenu-item"><a href="{% url 'core:page' 'privacy' %}">Privacy Policy</a></li> -->
+                         <li class="submenu-item"><a href="{% url 'donation:donation-home' %}">Hadiya</a></li>
+                      </ul>
+                    </li>
+                    <!-- <li><a href="{% url 'gallery:gallery' %}">GALLERY</a></li> -->
+                    <li><a href="{% url 'core:contact' %}">CONTACT</a></li>
+                    <!-- {% if request.user.is_authenticated %}
+                      {% if is_admin %} -->
+                        <!-- <li class="nav-item">
+                          <a href="{% url 'admin:index' %}">
+                            <i class="fa fa-user-secret text-warning z-depth-1 "></i>Adust01
+                          </a>
+                        </li> -->
+                      <!-- {% endif %} -->
+                      <!-- <li>
+                        <a href="{% url 'account_logout' %}">
+                          <i class="fas fa-sign-out-alt"></i>Logout
+                        </a>
+                      </li> -->
+                      <!-- {% else %} -->
+                      <!-- <li>
+                        <a href="{% url 'account_login' %}">
+                          <i class="fas fa-sign-in-alt"></i>Login
+                        </a>
+                      </li> -->
+                    <!-- {% endif %} -->
+                  </ul>
+
+                </div> <!-- /#navbar -->
+
+              </div> <!-- /.container -->
+              
+            </div> <!-- /.navbar-main -->
+
+
+        </nav> 
+
+    </header> <!-- /. main-header -->
