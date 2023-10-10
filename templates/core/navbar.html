@@ -49,37 +49,37 @@
                   <ul class="nav navbar-nav">
                     <li><a class="is-active" href="{% url 'core:home' %}">HOME</a></li>
                     <li><a href="{% url 'blog:blog-home' %}">BLOG</a></li>
-                    <li class="has-child"><a href="#">MSSN</a>
+                    <!-- <li class="has-child"><a href="#">MSSN</a>
                       <ul class="submenu">
-                         <li class="submenu-item"><a href="{% url 'core:page' 'about' %}">About</a></li>
+                         <li class="submenu-item"><a href="{% url 'core:page' 'about' %}">About</a></li> -->
                          <!-- <li class="submenu-item"><a href="{% url 'core:page' 'team' %}">Team</a></li>
                          <li class="submenu-item"><a href="{% url 'core:page' 'terms' %}">Terms &amp; Conditions</a></li> -->
                          <!-- <li class="submenu-item"><a href="{% url 'core:page' 'privacy' %}">Privacy Policy</a></li> -->
-                         <li class="submenu-item"><a href="{% url 'donation:donation-home' %}">Hadiya</a></li>
+                         <!-- <li class="submenu-item"><a href="{% url 'donation:donation-home' %}">Hadiya</a></li>
                       </ul>
-                    </li>
-                    <!-- <li><a href="{% url 'gallery:gallery' %}">GALLERY</a></li> -->
+                    </li> -->
+                    <li><a href="{% url 'gallery:gallery' %}">GALLERY</a></li>
                     <li><a href="{% url 'core:contact' %}">CONTACT</a></li>
-                    <!-- {% if request.user.is_authenticated %}
-                      {% if is_admin %} -->
-                        <!-- <li class="nav-item">
+                    {% if request.user.is_authenticated %}
+                      {% if is_admin %}
+                        <li class="nav-item">
                           <a href="{% url 'admin:index' %}">
                             <i class="fa fa-user-secret text-warning z-depth-1 "></i>Adust01
                           </a>
-                        </li> -->
-                      <!-- {% endif %} -->
-                      <!-- <li>
+                        </li>
+                      {% endif %}
+                      <li>
                         <a href="{% url 'account_logout' %}">
                           <i class="fas fa-sign-out-alt"></i>Logout
                         </a>
-                      </li> -->
-                      <!-- {% else %} -->
-                      <!-- <li>
+                      </li>
+                      {% else %}
+                      <li>
                         <a href="{% url 'account_login' %}">
                           <i class="fas fa-sign-in-alt"></i>Login
                         </a>
-                      </li> -->
-                    <!-- {% endif %} -->
+                      </li>
+                     {% endif %}
                   </ul>
 
                 </div> <!-- /#navbar -->
